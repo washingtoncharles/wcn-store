@@ -14,6 +14,16 @@ export default async function Home() {
     take: 10
   });
 
+  //VALIDATION FOR KEYBOARDS
+  const keyboards = await prismaClient.product.findMany({
+    where: {
+      category: {
+        slug: "keyboards"
+      }
+    },
+    take: 10
+  })
+
   return (
     <div className="">
       {/* HOME PAGE MAIN BANNER */}
@@ -46,6 +56,12 @@ export default async function Home() {
         width={0}
         alt="até 55% de Desconto em Mouses!"
       />
+
+      {/* KEYBOARDS LIST */}
+      <div className="mt-8">
+        <p className="mb-3 pl-5 font-bold uppercase">Teclados</p>
+        <ProductList products={keyboards} />
+      </div>
       
     </div>
   )
