@@ -3,6 +3,7 @@ import Categories from "./components/categories";
 import { prismaClient } from "@/lib/prisma";
 import ProductList from "./components/product-list";
 import SectionTitle from "./components/section-title";
+import PromoBanner from "./components/promo-banner";
 
 export default async function Home() {
   //VALIDATION FOR DISCOUNT PERCENTAGE GREATER THAN 0
@@ -28,12 +29,8 @@ export default async function Home() {
   return (
     <div className="">
       {/* HOME PAGE MAIN BANNER */}
-      <Image 
-        className="w-full h-auto px-5"
-        sizes="100vw"
+      <PromoBanner 
         src="/banner-home-01.svg"
-        height={0}
-        width={0}
         alt="até 55% de Desconto esse mês!"
       />
       
@@ -49,12 +46,8 @@ export default async function Home() {
       </div>
 
       {/* HOME PAGE SECONDARY BANNER */}
-      <Image 
-        className="w-full h-auto px-5"
-        sizes="100vw"
+      <PromoBanner 
         src="/banner-home-02.svg"
-        height={0}
-        width={0}
         alt="até 55% de Desconto em Mouses!"
       />
 
