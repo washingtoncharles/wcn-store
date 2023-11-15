@@ -26,8 +26,18 @@ export default async function Home() {
     take: 10
   })
 
+  //VALIDATION FOR MOUSES
+  const mouses = await prismaClient.product.findMany({
+    where: {
+      category: {
+        slug: "mouses"
+      }
+    },
+    take: 10
+  })
+
   return (
-    <div className="">
+    <div className="flex flex-col gap-8">
       {/* HOME PAGE MAIN BANNER */}
       <PromoBanner 
         src="/banner-home-01.svg"
@@ -35,12 +45,12 @@ export default async function Home() {
       />
       
       {/* LIST OF CATEGORIES */}
-      <div className="mt-8 px-5">
+      <div className="px-5">
         <Categories />
       </div>
 
       {/* PRODUCT LIST */}
-      <div className="mt-8">
+      <div>
         <SectionTitle>Ofertas</SectionTitle>
         <ProductList products={deals} />
       </div>
@@ -52,9 +62,21 @@ export default async function Home() {
       />
 
       {/* KEYBOARDS LIST */}
-      <div className="mt-8">
+      <div>
         <SectionTitle>Teclados</SectionTitle>
         <ProductList products={keyboards} />
+      </div>
+
+      {/* HOME PAGE TERCIARY BANNER */}
+      <PromoBanner 
+        src="/banner-home-03.svg"
+        alt="até 20% de Desconto em Fones!"
+      />
+
+      {/* MOUSES LIST */}
+      <div>
+        <SectionTitle>Mouses</SectionTitle>
+        <ProductList products={mouses} />
       </div>
       
     </div>
