@@ -2,6 +2,7 @@ import Image from "next/image";
 import Categories from "./components/categories";
 import { prismaClient } from "@/lib/prisma";
 import ProductList from "./components/product-list";
+import SectionTitle from "./components/section-title";
 
 export default async function Home() {
   //VALIDATION FOR DISCOUNT PERCENTAGE GREATER THAN 0
@@ -43,7 +44,7 @@ export default async function Home() {
 
       {/* PRODUCT LIST */}
       <div className="mt-8">
-        <p className="mb-3 pl-5 font-bold uppercase">Ofertas</p>
+        <SectionTitle>Ofertas</SectionTitle>
         <ProductList products={deals} />
       </div>
 
@@ -59,7 +60,7 @@ export default async function Home() {
 
       {/* KEYBOARDS LIST */}
       <div className="mt-8">
-        <p className="mb-3 pl-5 font-bold uppercase">Teclados</p>
+        <SectionTitle>Teclados</SectionTitle>
         <ProductList products={keyboards} />
       </div>
       
