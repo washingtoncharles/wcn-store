@@ -40,13 +40,13 @@ const ProductItem = ({product}: ProductItemProps) => {
         </p>
 
         {/* CONDITIONAL FOR PRESENTING DISCOUNTED VALUE */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
           {product.discountPercentage > 0 ? (
             <>
               <p className="font-semibold ">
                 R$ {product.totalPrice.toFixed(2)}
               </p>
-              <p className="opacity-75 line-through text-xs">
+              <p className="opacity-75 line-through text-[0.6875rem]">
                 R$ {Number(product.basePrice).toFixed(2)}
               </p>
             </>
