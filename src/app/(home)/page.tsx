@@ -33,8 +33,19 @@ export default async function Home() {
 
       {/* PRODUCT LIST */}
       <div className="mt-8">
+        <p className="mb-3 pl-5 font-bold uppercase">Ofertas</p>
         <ProductList products={deals} />
       </div>
+
+      {/* HOME PAGE SECONDARY BANNER */}
+      <Image 
+        className="w-full h-auto px-5"
+        sizes="100vw"
+        src="/banner-home-02.svg"
+        height={0}
+        width={0}
+        alt="até 55% de Desconto em Mouses!"
+      />
       
     </div>
   )
