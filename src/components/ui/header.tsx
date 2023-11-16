@@ -97,6 +97,7 @@ const Header = () => {
         </SheetContent>
       </Sheet>
       
+      {/* LOGO */}
       <Link href="/">
         <h1 
           className="text-lg font-semibold">
@@ -104,6 +105,7 @@ const Header = () => {
         </h1>
       </Link>
 
+      {/* SHOPPING CART */}
       <Button size={"icon"} variant={"outline"}>
         <ShoppingCart />
       </Button>
