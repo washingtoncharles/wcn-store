@@ -1,6 +1,6 @@
 "use client";
 import { ProductWithTotalPrice } from "@/helpers/product";
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 
 export interface CartProduct extends ProductWithTotalPrice {
   quantity: number;
@@ -11,6 +11,9 @@ interface ICartContext {
   cartBasePrice: number;
   cartTotalDiscount: number;
   cartTotalPrice: number;
+  total: number;
+  subTotal: number;
+  totalDiscount: number;
   addProductToCart: (product: CartProduct) => void;
   decreaseProductQuantity: (productId: string) => void;
   increaseProductQuantity: (productId: string) => void;
@@ -22,16 +25,36 @@ export const CartContext = createContext<ICartContext>({
   cartBasePrice: 0,
   cartTotalDiscount: 0,
   cartTotalPrice: 0,
+  total: 0,
+  subTotal: 0,
+  totalDiscount: 0,
   addProductToCart: () => {},
   decreaseProductQuantity: () => {},
   increaseProductQuantity: () => {},
   removeProduct: () => {},
 })
 
-export const CartProvider = ({children}: {children: React.ReactNode}) => {
+const CartProvider = ({children}: {children: React.ReactNode}) => {
   const [products, setProducts] = useState<CartProduct[]>([]);
-  const addProductToCart = (product: CartProduct) => {
 
+  //CALCULATE SUBTOTAL
+  const subTotal = useMemo(() => {
+    return products.reduce((acc, product) => {
+      return acc + Number(product.basePrice);
+    }, 0);
+  }, [products]);
+  
+  //CALCULATE TOTAL
+  const total = useMemo(() => {
+    return products.reduce((acc, product) => {
+      return acc + product.totalPrice;
+    }, 0);
+  }, [products]);
+  
+  //CALCULATE DISCOUNT
+  const totalDiscount = total - subTotal;
+
+  const addProductToCart = (product: CartProduct) => {
     // CHECK IF PRODUCT IS ALREADY ON CART
     const productIsAlreadyOnCart = products.some(
       (cartProduct) => cartProduct.id === product.id,
@@ -106,6 +129,9 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
         cartBasePrice: 0,
         cartTotalDiscount: 0,
         cartTotalPrice: 0,
+        total,
+        subTotal,
+        totalDiscount,
       }}
     >
       {children}
