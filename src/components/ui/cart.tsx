@@ -41,7 +41,8 @@ const Cart = () => {
         </ScrollArea>
       </div>
 
-      {/* CALCULATE CART TOTALS */}
+      {products.length > 0 && (
+      // CALCULATE CART TOTALS
       <div className="flex flex-col gap-3">
         
         <Separator />
@@ -74,6 +75,8 @@ const Cart = () => {
         </Button>
 
       </div>
+      )}
+      
     </div>
    );
 }
